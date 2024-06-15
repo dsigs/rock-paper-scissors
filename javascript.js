@@ -1,11 +1,17 @@
-let playerChoice 
+let userChoice; 
+let userScore = 0;
+let computerScore = 0; 
+
+function playRound(userChoice, computerChoice) {
+    
+}
 
 do {
-    playerChoice = prompt("Pick between rock, paper, and scissors: ");
+    userChoice = prompt("Pick between rock, paper, and scissors: ");
 }
-while (playerChoice !== 'rock' && playerChoice !== 'paper' && playerChoice !== 'scissors') 
+while (userChoice !== 'rock' && userChoice !== 'paper' && userChoice !== 'scissors') 
 
-console.log(playerChoice);
+console.log("You picked:", userChoice);
 
 function getComputerChoice() {
      return Math.floor(Math.random() * 3)
@@ -14,17 +20,21 @@ function getComputerChoice() {
 let computerChoice = getComputerChoice();
 
 if (computerChoice == 0) {
-    console.log("Computer: rock");
+    console.log("Computer picked: rock");
 } else if (computerChoice == 1) {
-    console.log("Computer: paper");
+    console.log("Computer picked: paper");
 } else if (computerChoice == 2) {
-    console.log("Computer: scissors")
+    console.log("Computer picked: scissors");
 }
 
-if (playerChoice == 'rock' && computerChoice == 2) {
+if (userChoice == 'rock' && computerChoice == 2) {
     console.log("You win!");
-} else if (playerChoice == 'rock' && computerChoice == 1) {
+    userScore++;
+} else if (userChoice == 'rock' && computerChoice == 1) {
     console.log("You lose");
+    computerScore++
 } else {
     console.log("Tie");
 }
+
+
