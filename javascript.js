@@ -1,40 +1,56 @@
-let userChoice; 
-let userScore = 0;
-let computerScore = 0; 
+const playerSelection = getPlayerChoice();
+const computerSelection = getComputerChoice();
+let playerScore = 0;
+let computerScore = 0;
 
-function playRound(userChoice, computerChoice) {
+function getPlayerChoice(playerSelection) {
+    do {
+        playerSelection = prompt("Pick between rock, paper, and scissors: ");
+        playerSelection = playerSelection.toLowerCase();
+    }
+    while (playerSelection !== 'rock' && playerSelection !== 'paper' && playerSelection !== 'scissors')  
+    return playerSelection      
+}
+
+function getComputerChoice(computerSelection) {
+    computerSelection = Math.floor(Math.random() * 3);
+
+    if (computerSelection == 0) {
+        computerSelection = 'rock';
+    } else if (computerSelection == 1) {
+        computerSelection = 'paper';
+    } else if (computerSelection == 2) {
+        computerSelection = 'scissors';
+    }
     
+    return computerSelection
 }
 
-do {
-    userChoice = prompt("Pick between rock, paper, and scissors: ");
+function playRound() {
+    if (playerSelection == 'rock' && computerSelection == 'scissors') {
+        console.log("You win!");
+    } else if (playerSelection == 'rock' && computerSelection == 'paper') {
+        console.log("You lose");
+    } else {
+        console.log("Tie");
+    }
+    
+    if (playerSelection == 'paper' && computerSelection == 'rock') {
+        console.log("You win!");
+    } else if (playerSelection == 'paper' && computerSelection == 'scissors') {
+        console.log("You lose");
+    } else {
+        console.log("Tie");
+    }
+
+    if (playerSelection == 'scissors' && computerSelection == 'paper') {
+        console.log("You win!");
+    } else if (playerSelection == 'scissors' && computerSelection == 'rock') {
+        console.log("You lose");
+    } else {
+        console.log("Tie");
+    }
+
+
 }
-while (userChoice !== 'rock' && userChoice !== 'paper' && userChoice !== 'scissors') 
-
-console.log("You picked:", userChoice);
-
-function getComputerChoice() {
-     return Math.floor(Math.random() * 3)
-}
-
-let computerChoice = getComputerChoice();
-
-if (computerChoice == 0) {
-    console.log("Computer picked: rock");
-} else if (computerChoice == 1) {
-    console.log("Computer picked: paper");
-} else if (computerChoice == 2) {
-    console.log("Computer picked: scissors");
-}
-
-if (userChoice == 'rock' && computerChoice == 2) {
-    console.log("You win!");
-    userScore++;
-} else if (userChoice == 'rock' && computerChoice == 1) {
-    console.log("You lose");
-    computerScore++
-} else {
-    console.log("Tie");
-}
-
 

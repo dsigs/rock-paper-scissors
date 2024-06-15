@@ -6,6 +6,8 @@
 
 //declare playerSelection = getPlayerChoice() 
 //declare computerSelection getComputerChoice()
+//declare playerScore = 0
+//declare computerScore = 0
 //make getPlayerChoice function
 //make getComputerChoice function 
 //make playRound function 
