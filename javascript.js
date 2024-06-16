@@ -2,13 +2,15 @@ const playerSelection = getPlayerChoice();
 const computerSelection = getComputerChoice();
 let playerScore = 0;
 let computerScore = 0;
+let result ='Game';
 
 function getPlayerChoice(playerSelection) {
     do {
         playerSelection = prompt("Pick between rock, paper, and scissors: ");
         playerSelection = playerSelection.toLowerCase();
     }
-    while (playerSelection !== 'rock' && playerSelection !== 'paper' && playerSelection !== 'scissors')  
+    while (playerSelection !== 'rock' && playerSelection !== 'paper' && playerSelection !== 'scissors' || playerSelection == null)  
+    
     return playerSelection      
 }
 
@@ -26,31 +28,35 @@ function getComputerChoice(computerSelection) {
     return computerSelection
 }
 
-function playRound() {
+function playRound(playerSelection, computerSelection) {
     if (playerSelection == 'rock' && computerSelection == 'scissors') {
-        console.log("You win!");
+        playerScore++;
+        return console.log("You win");
     } else if (playerSelection == 'rock' && computerSelection == 'paper') {
-        console.log("You lose");
-    } else {
-        console.log("Tie");
-    }
-    
-    if (playerSelection == 'paper' && computerSelection == 'rock') {
-        console.log("You win!");
+        computerScore++;
+        return console.log("You lose");
+    }  else if (playerSelection == 'paper' && computerSelection == 'rock') {
+        playerScore++;
+        return console.log("You win");
     } else if (playerSelection == 'paper' && computerSelection == 'scissors') {
-        console.log("You lose");
-    } else {
-        console.log("Tie");
-    }
-
-    if (playerSelection == 'scissors' && computerSelection == 'paper') {
-        console.log("You win!");
+        computerScore++
+        return console.log("You lose");
+    } else if (playerSelection == 'scissors' && computerSelection == 'paper') {
+        playerScore++;
+        return console.log("You win");
     } else if (playerSelection == 'scissors' && computerSelection == 'rock') {
-        console.log("You lose");
+        computerScore++;
+        return console.log("You lose");
     } else {
         console.log("Tie");
     }
-
-
 }
 
+
+
+playRound(playerSelection, computerSelection);
+
+console.log(playerSelection);
+console.log(computerSelection);
+console.log(playerScore);
+console.log(computerScore);
