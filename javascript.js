@@ -8,7 +8,8 @@ function getPlayerChoice(playerSelection) {
         playerSelection = prompt("Pick between rock, paper, and scissors: ");
         playerSelection = playerSelection.toLowerCase();
     }
-    while (playerSelection !== 'rock' && playerSelection !== 'paper' && playerSelection !== 'scissors' || playerSelection == null)  
+    while (playerSelection !== 'rock' && playerSelection !== 'paper' &&
+        playerSelection !== 'scissors' || playerSelection == null)  
     
     return playerSelection      
 }
@@ -28,10 +29,14 @@ function getComputerChoice(computerSelection) {
 }
 
 function playRound(playerSelection, computerSelection) {
-    if (playerSelection == 'rock' && computerSelection == 'scissors' || playerSelection == 'paper' && computerSelection == 'rock' || playerSelection == 'scissors' && computerSelection == 'paper') {
+    if (playerSelection == 'rock' && computerSelection == 'scissors' ||
+         playerSelection == 'paper' && computerSelection == 'rock' ||
+          playerSelection == 'scissors' && computerSelection == 'paper') {
         playerScore++;
         return console.log("Round won");
-    } else if (playerSelection == 'rock' && computerSelection == 'paper' || playerSelection == 'paper' && computerSelection == 'scissors' || playerSelection == 'scissors' && computerSelection == 'rock') {
+    } else if (playerSelection == 'rock' && computerSelection == 'paper' ||
+         playerSelection == 'paper' && computerSelection == 'scissors' ||
+          playerSelection == 'scissors' && computerSelection == 'rock') {
         computerScore++;
         return console.log("Round lost");
     } else {
