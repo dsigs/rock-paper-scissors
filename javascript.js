@@ -46,68 +46,63 @@ function playRound(playerSelection, computerSelection) {
 function playGame() {    
     computerSelection = getComputerChoice();
     playRound(playerSelection, computerSelection)
-    if (playerScore === 5) {
-        return results.textContent = 'You win!'
-    } 
-    if (computerScore === 5) {
-        return results.textContent = 'You lose!'
+    updateUI();
+
+    if (playerScore === 5 || computerScore === 5) {
+        allBtns.forEach((button) => button.disabled = true);
     }
+
 }
 
+function handleButtonClick(choice) {
+    playerSelection = choice;
+    playGame();
+}
+
+let allBtns = document.querySelectorAll('.btn');
 let rockBtn = document.querySelector('.rock');
 let paperBtn = document.querySelector('.paper');
 let scissorsBtn = document.querySelector('.scissors')
 
-rockBtn.addEventListener('click', () => {
-    playerSelection = 'rock';
-    playGame();
-    displayPicks();
-    displayScore();
-    displayWinner();
-});
+rockBtn.addEventListener('click', () => handleButtonClick('rock'));
 
-paperBtn.addEventListener('click', () => {
-    playerSelection = 'paper';
-    playGame();
-    displayPicks();
-    displayScore();
-    displayWinner();
-});
+paperBtn.addEventListener('click', () => handleButtonClick('paper'));
 
-scissorsBtn.addEventListener('click', () => {
-    playerSelection = 'scissors';
-    playGame();
-    displayPicks();
-    displayScore();
-    displayWinner();
-});
+scissorsBtn.addEventListener('click', () => handleButtonClick('scissors'));
 
-let display = document.querySelector('#display');
-let playerScoreUI = document.createElement('p');
-let computerScoreUI = document.createElement('p');
-let results = document.createElement('p');
-let showPicks = document.createElement('p');
+const display = document.querySelector('#display');
+const playerScoreUI = document.createElement('p');
+const computerScoreUI = document.createElement('p');
+const results = document.createElement('p');
+const showPicks = document.createElement('p');
 
 function displayScore() {
+    playerScoreUI.textContent = `Player Score: ${playerScore}`;
+    computerScoreUI.textContent = `Computer Score: ${computerScore}`;
     display.appendChild(playerScoreUI);
-    playerScoreUI.textContent = playerScore;
     display.appendChild(computerScoreUI);
-    computerScoreUI.textContent = computerScore;
 }
 
 function displayWinner() {
-    display.appendChild(results);
 
     if (playerScore === 5) {
         return results.textContent = 'You win!';
-    }
-    if (computerScore === 5) {
+    } else if (computerScore === 5) {
         return results.textContent = 'Computer wins'
     }
+    display.appendChild(results);
+
 }  
 
 function displayPicks() {   
+    showPicks.textContent = `You picked ${playerSelection}. Opponent picked ${computerSelection}.`;
     display.appendChild(showPicks);
-    showPicks.textContent = `You picked ${playerSelection}. 
-    Opponent picked ${computerSelection}.`;
 }
+
+function updateUI() {
+    displayPicks();
+    displayScore();
+    displayWinner();
+}
+
+//Is there anyway I can refactor better?
